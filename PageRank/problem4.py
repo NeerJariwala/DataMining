@@ -5,12 +5,6 @@ from problem3 import compute_P,random_walk
 '''
     Problem 4: Solving sink-node problem in PageRank
     In this problem, we implement the pagerank algorithm which can solve the sink node problem.
-
-    How to run the unit tests to test your code?
-    1) Test one function in a test file:
-       After implementing one function in this file (for example, compute_S), you could test the correctness of your code by typing `nosetests -v test4.py:test_compute_S' in the terminal.
-    2) Test all functions in one test file:
-       After solving all the functions in a test file (for example, test4.py), you could test the correctness of your code by typing `nosetests -v test4.py' in the terminal.
 '''
 
 #--------------------------
@@ -34,9 +28,6 @@ def compute_S(A):
             S[:, i] = 1/h
     return S
 
-    ''' TEST: Now you can test the correctness of your code above by typing `nosetests -v test4.py:test_compute_S' in the terminal.  '''
-
-
 
 
 #--------------------------
@@ -57,27 +48,3 @@ def pagerank_v2(A):
     x, n_steps = random_walk(S, x_0)
 
     return x
-
-
-
-
-#--------------------------------------------
-
-''' TEST ALL: 
-        Now you can test the correctness of all the above functions by typing `nosetests -v test4.py' in the terminal.  
-
-        If your code passed all the tests, you will see the following message in the terminal:
-                ---------- Problem 4 (10 points in total) ------------ ... ok
-                (5 points) compute_S ... ok
-                (5 points) pagerank_v2 ... ok
-                
-                ----------------------------------------------------------------------
-                Ran 3 tests in 0.002s
-
-OK
-
-'''
-
-#--------------------------------------------
-
-
