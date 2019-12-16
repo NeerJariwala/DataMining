@@ -32,10 +32,8 @@ def compute_D(A):
         Output:
             D:  the degree matrix, a numpy float matrix of shape n by n. 
                 All off-diagonal elements are 0. Each diagonal element represents the degree of the node (number of links). 
-        Hint: you could solve this problem using 2 lines of code.
+
     '''
-    #########################################
-    ## INSERT YOUR CODE HERE
 
     # degree vector of the nodes
     degree_vec = np.sum(A, 1)
@@ -43,10 +41,7 @@ def compute_D(A):
     # diagonal matrix
     D = np.diag(degree_vec)
 
-    #########################################
     return D
-
-    ''' TEST: Now you can test the correctness of your code above by typing `nosetests -v test5.py:test_compute_D' in the terminal.  '''
 
 
 #--------------------------
@@ -60,12 +55,10 @@ def compute_L(D,A):
                 If there is a link between node i an node j, then A[i][j] = A[j][i] = 1. 
         Output:
             L:  the Laplacian matrix, a numpy float matrix of shape n by n. 
-        Hint: you could solve this problem using 1 line of code.
+
     '''
     L = np.subtract(D, A)
     return L
-
-    ''' TEST: Now you can test the correctness of your code above by typing `nosetests -v test5.py:test_compute_L' in the terminal.  '''
 
 
 #--------------------------
@@ -83,7 +76,7 @@ def find_e2(L,tol= 1e-4):
         Here we assume 0.00000001 is close enough to 0 because is smaller than the tolerance level (tol).
         For example, if the eigen values are [2., 0.0000000000001, 0.3], the last eigen vector is the answer.
         For example, if the eigen values are [0.00003, 0.000001, 0.3], the last eigen vector is the answer.
-        Hint: you could solve this problem using 6 lines of code.
+
     '''
     vals, vecs = np.linalg.eigh(L)
     minval = 1
@@ -93,9 +86,6 @@ def find_e2(L,tol= 1e-4):
     e2 = vecs[:, minval]
 
     return e2 
-
-    ''' TEST: Now you can test the correctness of your code above by typing `nosetests -v test5.py:test_find_e2' in the terminal.  '''
-
 
 
 #--------------------------
@@ -107,12 +97,9 @@ def compute_x(e2):
         Output:
             x:  the binary vector of length n, a numpy float vector of (0/1) values.
                 It indicates a binary partition on the graph, such as [1.,1.,1., 0.,0.,0.].
-        Hint: you could solve this problem using 1 line of code.
     '''
     x = np.where(e2 <= 0, 0., 1.)
     return x
-
-    ''' TEST: Now you can test the correctness of your code above by typing `nosetests -v test5.py:test_compute_x' in the terminal.  '''
 
 
 
@@ -128,16 +115,8 @@ def spectral_clustering(A):
             x:  the binary vector of length n, a numpy float vector of (0/1) values.
                 It indicates a binary partition on the graph, such as [1.,1.,1., 0.,0.,0.].
         Note: you cannot use any existing python package for spectral clustering, such as scikit-learn.
-        Hint: x is related to the eigen vector of L with the smallest positive eigen values. 
-              For example, if the eigen vector is [0.2,-0.1, -0.2], the values larger than zero will be 1, so x=[1,0,0] in this example.
-              Note: if the eigen value is small enough (say smaller than 0.000001), we can treat it as being zero. 
-        Hint: you could solve this problem using 4 lines of code.
-    (5 points)
-    '''
-   
-    #########################################
-    ## INSERT YOUR CODE HERE
 
+    '''
     # compute degree matrix
     D = compute_D(A)
 
@@ -154,67 +133,4 @@ def spectral_clustering(A):
     x = compute_x(e2)
 
 
-    #########################################
-    return x 
-
-
-    ''' TEST: Now you can test the correctness of your code above by typing `nosetests -v test5.py:test_spectral_clustering' in the terminal.  '''
-
-
-#--------------------------------------------
-
-''' TEST Problem 5: 
-        Now you can test the correctness of all the above functions by typing `nosetests -v test5.py' in the terminal.  
-
-        If your code passed all the tests, you will see the following message in the terminal:
-            ----------- Problem 5 (20 points in total)--------------------- ... ok
-            (4 points) compute_D ... ok
-            (4 points) compute_L ... ok
-            (4 points) find_e2 ... ok
-            (4 points) compute_x ... ok
-            (4 points) spectral clustering ... ok
-            
-            ----------------------------------------------------------------------
-            Ran 6 tests in 0.021s          
-            OK
-'''
-
-
-
-#--------------------------------------------
-
-''' FINAL TEST of your submission: 
-        Now you can test the correctness of all the problems in this homework by typing `nosetests -v' in the terminal.  
-
-        If your code passed all the tests, you will see the following message in the terminal:
-            ----------- Problem 1 (10 points in total)--------------------- ... ok
-            (5 points) compute_eigen_pairs ... ok
-            (5 points) sort_eigen_pairs ... ok
-            ----------- Problem 2 (25 points in total)--------------------- ... ok
-            (3 points) centering_X ... ok
-            (2 points) compute_C ... ok
-            (5 points) compute_P ... ok
-            (5 points) compute_Xp ... ok
-            (10 points) PCA ... ok
-            ----------- Problem 3 (25 points in total)--------------------- ... ok
-            (3 points) vector_to_image ... ok
-            (2 points) load_dataset ... ok
-            (5 points) compute_mu_image ... ok
-            (15 points) compute_eigen_faces ... ok
-            ----------- Problem 4 (20 points in total)--------------------- ... ok
-            (10 points) compute_distance ... ok
-            (10 points) face_recognition ... ok
-            ----------- Problem 5 (20 points in total)--------------------- ... ok
-            (4 points) compute_D ... ok
-            (4 points) compute_L ... ok
-            (4 points) find_e2 ... ok
-            (4 points) compute_x ... ok
-            (4 points) spectral clustering ... ok
-            ----------------------------------------------------------------------
-            Ran 23 tests in 17.602s
-
-'''
-
-#--------------------------------------------
-
-
+    return x
