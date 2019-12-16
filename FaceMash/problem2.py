@@ -19,14 +19,9 @@ def import_team_names(filename ='ncaa_teams.txt'):
                 filename: the name of txt file, a string 
         Output: 
                 team_names: the list of for team names, a python list of string values, such as ['team a', 'team b','team c'].
-        Hint: NumPy has a function, called loadtxt(), to load an array from text file. 
-        To load strings into the array, you could set the dtype parameter in the function.
     '''
     team_names = np.loadtxt(filename, delimiter='\n', dtype='str')
     return team_names
-
-    ''' TEST: Now you can test the correctness of your code above by typing `nosetests -v test2.py:test_import_team_names' in the terminal.  '''
-
 
 
 #--------------------------
@@ -38,13 +33,9 @@ def import_W(filename ='ncaa_results.csv'):
                 filename: the name of csv file, a string 
         Output: 
                 W: the game result matrix, a numpy integer array of shape (n by 2)
-        Hint: NumPy has a function, called loadtxt(), to load an array from text file. 
-        To load integers into the array, you could set the dtype parameter in the function.
     '''
     W = np.loadtxt(filename, delimiter=',', dtype='int')
     return W
-
-    ''' TEST: Now you can test the correctness of your code above by typing `nosetests -v test2.py:test_import_W' in the terminal.  '''
 
 
 
@@ -88,30 +79,3 @@ def team_rating(resultfile = 'ncaa_results.csv',
     top_ratings = np.sort(R)[::-1]
 
     return top_teams, top_ratings
-
-
-
-
-#--------------------------------------------
-
-''' TEST ALL: 
-        Now you can test the correctness of all the above functions by typing `nosetests -v test2.py' in the terminal.  
-
-        If your code passed all the tests, you will see the following message in the terminal:
-            ----------- Problem 2 (20 points in total)-------------- ... ok
-            (5 points) import_team_names ... ok
-            (5 points) import_W ... ok
-            (10 points) team_rating ... ok
-            
-            ----------------------------------------------------------------------
-            Ran 4 tests in 0.220s
-            
-            OK
-'''
-
-#--------------------------------------------
-
-
-
-
-
