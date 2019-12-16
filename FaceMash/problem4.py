@@ -19,13 +19,9 @@ def load_batting(filename='Batting.csv'):
                 filename: a string indicating the filename of the CSV file.
         Output:
                 X: a pandas dataframe, loaded from the CSV file 
-        Hint: you could solve this problem using one line of code.
     '''
     X = load_csv(filename)
     return X 
-
-
-    ''' TEST: Now you can test the correctness of your code above by typing `nosetests -v test4.py:test_load_batting' in the terminal.  '''
 
 
 #-------------------------------------------------------------------------
@@ -43,13 +39,10 @@ def search_batting(X, year=2001):
                 year: an integer scalar, the year to be searched
         Output:
                 Y: a dataframe containing the batting data only in the searched year. 
-        Hint: you could solve this problem using one line of code.
     '''
     Y = X[X['yearID'] == year]
     return Y 
 
-
-    ''' TEST: Now you can test the correctness of your code above by typing `nosetests -v test4.py:test_search_batting' in the terminal.  '''
 
 #-------------------------------------------------------------------------
 '''
@@ -76,8 +69,6 @@ def aggregate_batting(X):
     Y = aggregate(X, 'playerID')
     return Y 
 
-
-    ''' TEST: Now you can test the correctness of your code above by typing `nosetests -v test4.py:test_aggregate_batting' in the terminal.  '''
 
 #-------------------------------------------------------------------------
 '''
@@ -107,8 +98,6 @@ def join_batting(X,Y):
     return Z 
 
 
-    ''' TEST: Now you can test the correctness of your code above by typing `nosetests -v test4.py:test_join_batting' in the terminal.  '''
-
 #-------------------------------------------------------------------------
 '''
     If you have passed the previous test case, the result data frame should have been saved into a file, called 'Batting2001AJ.csv'.
@@ -133,13 +122,10 @@ def search_salary(X, year=2002):
                 year: an integer scalar, the year to be searched
         Output:
                 Y: a dataframe containing the salary data only in the searched year. 
-        Hint: you could solve this problem using one line of code.
     '''
     Y = X[X['yearID'] == year]
     return Y 
 
-
-    ''' TEST: Now you can test the correctness of your code above by typing `nosetests -v test4.py:test_search_salary' in the terminal.  '''
 #-------------------------------------------------------------------------
 '''
     If you have passed the previous test case, the result data frame should have been saved into a file, called 'Salaries2002.csv'.
@@ -165,39 +151,8 @@ def join_salary(X,Y):
     return Z 
 
 
-    ''' TEST: Now you can test the correctness of your code above by typing `nosetests -v test4.py:test_join_salary' in the terminal.  '''
-
-
-
 #-------------------------------------------------------------------------
 '''
     If you have passed the previous test case, the result data frame should have been saved into a file, called 'Batting2001AJS.csv'.
     This file contains all the information we need for player evaluation.
 '''
-
-
-
-#--------------------------------------------
-
-''' TEST ALL functions in Problem 4: 
-        Now you can test the correctness of all the above functions by typing `nosetests -v test4.py' in the terminal.  
-
-        If your code passed all the tests, you will see the following message in the terminal:
-            ---------- Problem 4 (15 points in total) ------------ ... ok
-            (2 points) load_batting ... ok
-            (2 points) search_batting ... ok
-            (3 points) aggregate_batting ... ok
-            (3 points) join_batting ... ok
-            (2 points) search_salary ... ok
-            (3 points) join_salary ... ok
-            ----------------------------------------------------------------------
-            Ran 6 tests in 0.758s
-            
-            OK
-
-'''
-
-#--------------------------------------------
-
-
-
