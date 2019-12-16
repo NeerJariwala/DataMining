@@ -4,7 +4,6 @@ import numpy as np
 import ssl
 ssl._create_default_https_context = ssl._create_unverified_context
 from sklearn.datasets import fetch_olivetti_faces
-# Hint: you can reuse the functions that you have implemented in problem 2. For example, p2.PCA() 
 import problem2 as p2 
 #-------------------------------------------------------------------------
 '''
@@ -18,7 +17,6 @@ import problem2 as p2
         * imageio 
     You could use `pip3 install sklearn`                        
                   `pip3 install imageio` to install the packages.
-    Hint: you can reuse the functions that you have implemented in problem 2. For example, p2.PCA() 
 
     Notations:
             ---------- input data ------------------------
@@ -53,8 +51,6 @@ def vector_to_image(x):
     image = np.reshape(x, (k, k))
     return image
 
-    ''' TEST: Now you can test the correctness of your code above by typing `nosetests -v test3.py:test_vector_to_image' in the terminal.  '''
-
 
 #--------------------------
 def load_dataset():
@@ -66,18 +62,12 @@ def load_dataset():
             y: labels associated to each face image, a numpy integer vector of length n (n=400 in this dataset).
                The i-th element can be  0,1,..., or 39 corresponding to the Subject ID of the i-th image. 
             images: numpy array of shape (400, 64, 64). Each face image is a (64, 64) matrix, and we have 400 images in the dataset.
-        Hint: you could use fetch_olivetti_faces() function in sklearn.data package to download/load the dataset.
     '''
     data = fetch_olivetti_faces()
     X = data.data
     y = data.target
     images = data.images
     return X, y, images
-
-    ''' 
-        TEST: Now you can test the correctness of your code above by typing `nosetests -v test3.py:test_load_dataset' in the terminal.  
-              If the dataset is loaded correctly, an image file (named 'face.jpg') should have been saved in your current folder.
-    '''
 
 
 
@@ -95,11 +85,6 @@ def compute_mu_image(X):
     temp = X.mean(axis=0)
     mu_image = vector_to_image(temp)
     return mu_image
-
-    ''' 
-        TEST: Now you can test the correctness of your code above by typing `nosetests -v test3.py:test_compute_mu_image' in the terminal.  
-              If the average face image is computed correctly, an image file (named 'mu.jpg') should have been saved in your current folder.
-    '''
 
 
 #--------------------------
@@ -124,35 +109,3 @@ def compute_eigen_faces(X, k=20):
     for i in range(k):
         P_images.append(vector_to_image(P[:, i]))
     return P_images, Xp
-
-    ''' 
-        TEST: Now you can test the correctness of your code above by typing `nosetests -v test3.py:test_compute_eigen_faces' in the terminal.  
-              If the eigen face images are computed correctly, a list of 20 image files (named 'eigen_face_i.jpg') should have been saved in your current folder.
-              The projection matrix Xp will be saved into a file (named 'face_pca.npy') in your current folder, we will use this file in the next problem for face recognition.
-    '''
-
-
-#--------------------------------------------
-
-''' TEST Problem 3: 
-        Now you can test the correctness of all the above functions by typing `nosetests -v test3.py' in the terminal.  
-
-        If your code passed all the tests, you will see the following message in the terminal:
-            ----------- Problem 3 (25 points in total)--------------------- ... ok
-            (3 points) vector_to_image ... ok
-            (2 points) load_dataset ... ok
-            (5 points) compute_mu_image ... ok
-            (15 points) compute_eigen_faces ... ok
-            
-            ----------------------------------------------------------------------
-            Ran 5 tests in 16.793s         
-            OK
-'''
-
-#--------------------------------------------
-
-
-
-
-
-
