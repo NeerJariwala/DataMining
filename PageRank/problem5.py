@@ -10,12 +10,6 @@ from problem4 import compute_S
     The probabilities are as follows:
         Randomly follow a link with probability alpha, for example, 0.95
         Randomly go to any page in the graph with probability (1 - alpha), for example, 0.05
-
-    How to run the unit tests to test your code?
-    1) Test one function in a test file:
-       After implementing one function in this file (for example, compute_G), you could test the correctness of your code by typing `nosetests -v test5.py:test_compute_G' in the terminal.
-    2) Test all functions in one test file:
-       After solving all the functions in a test file (for example, test5.py), you could test the correctness of your code by typing `nosetests -v test5.py' in the terminal.
 '''
 
 #--------------------------
@@ -29,14 +23,11 @@ def compute_G(A, alpha = 0.95):
                 alpha: a float scalar value, which is the probability of choosing option 1 (randomly follow a link on the page)
         Output: 
                 G: the transition matrix, a (n by n) numpy matrix of float values.  G[j][i] represents the probability of moving from node i to node j.
-                    The values in each column of matrix G should sum to 1.
-        Hint: you could solve this problem using 3 lines of code. You could re-use the functions that you have implemented in problem 3 and 4. 
+                    The values in each column of matrix G should sum to 1.        Hint: you could solve this problem using 3 lines of code. You could re-use the functions that you have implemented in problem 3 and 4. 
     '''
     n = np.shape(A)[0]
     G = alpha * compute_S(A) + (1 - alpha) * np.full((n, n), 1/n)
     return G
-
-    ''' TEST: Now you can test the correctness of your code above by typing `nosetests -v test5.py:test_compute_G' in the terminal.  '''
 
 
 
@@ -52,7 +43,6 @@ def pagerank(A, alpha = 0.95):
                 alpha: a float scalar value, which is the probability of choosing option 1 (randomly follow a link on the page)
         Output: 
                 x: the ranking scores, a numpy vector of float values, such as np.array([.3, .5, .7])
-        Hint: you could solve this problem using two lines of code. You could re-use the functions that you have implemented in problem 3 and 4.
     '''
     
     # Initialize the score vector 
@@ -61,27 +51,3 @@ def pagerank(A, alpha = 0.95):
     G = compute_G(A, alpha)
     x, n_steps = random_walk(G, x_0)
     return x
-
-
-
-#--------------------------------------------
-
-''' TEST ALL: 
-        Now you can test the correctness of all the above functions by typing `nosetests -v test5.py' in the terminal.  
-
-        If your code passed all the tests, you will see the following message in the terminal:
-            ---------- Problem 5 (20 points in total) ------------ ... ok
-            (10 points) compute_G() ... ok
-            (10 points) pagerank ... ok
-            
-            ----------------------------------------------------------------------
-            Ran 3 tests in 0.003s
-            
-            OK
-
-'''
-
-#--------------------------------------------
-
-
-
