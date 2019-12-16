@@ -22,9 +22,6 @@ def sum_salaries(T, D):
     S = sum_column(filtered, 'salary')
     return S
 
-    ''' TEST: Now you can test the correctness of your code above by typing `nosetests -v test6.py:test_sum_salaries' in the terminal.  '''
-
-
  
 
 #--------------------------
@@ -43,8 +40,6 @@ def sum_stat(T, D, key='H'):
     filtered = filtering(D, 'playerID', T)
     S = sum_column(filtered, key)
     return S
-
-    ''' TEST: Now you can test the correctness of your code above by typing `nosetests -v test6.py:test_sum_stat' in the terminal.  '''
 
 
 
@@ -71,8 +66,6 @@ def runs(T, D):
 
     return RC 
 
-    ''' TEST: Now you can test the correctness of your code above by typing `nosetests -v test6.py:test_runs' in the terminal.  '''
-
 
 #-------------------------------------------------------------------------
 # Team Building Methods
@@ -95,8 +88,6 @@ def scout():
 
     T = ['abreubo01', 'lockhke01', 'towerjo01']
     return T
-
-    ''' TEST: Now you can test the correctness of your code above by typing `nosetests -v test6.py:test_scout' in the terminal.  '''
 
 
 
@@ -124,8 +115,6 @@ def rank_BA(D, min_AB=300,max_salary=1200000):
     return R
 
 
-    ''' TEST: Now you can test the correctness of your code above by typing `nosetests -v test6.py:test_rank_BA' in the terminal.  '''
-
 
 #--------------------------
 def rank_OBP(D,min_AB=300,max_salary=1200000):
@@ -148,94 +137,3 @@ def rank_OBP(D,min_AB=300,max_salary=1200000):
     D = D.sort_values(by='OBP', ascending=False)
     R = list(D['playerID'])
     return R
-
-
-    ''' TEST: Now you can test the correctness of your code above by typing `nosetests -v test6.py:test_rank_OBP' in the terminal.  '''
-
-
-
-
-
-
-
-#--------------------------------------------
-
-''' TEST ALL functions in Problem 6: 
-        Now you can test the correctness of all the above functions by typing `nosetests -v test6.py' in the terminal.  
-
-        If your code passed all the tests, you will see the following message in the terminal:
-            ----------- Problem 5 (15 points in total)-------------- ... ok
-            (2 points) sum_salaries ... ok
-            (2 points) sum_stat ... ok
-            (2 points) runs ... ok
-            (3 points) scout ... ok
-            (3 points) rank_BA ... ok
-            (3 points) rank_OBP ... ok
-            
-            ----------------------------------------------------------------------
-            Ran 7 tests in 0.758s
-            
-            OK
-
-'''
-
-#--------------------------------------------
-
-
-
-
-
-#--------------------------------------------
-
-''' FINAL TEST of your submission: 
-        Now you can test the correctness of all the problems in this homework by typing `nosetests -v' in the terminal.  
-
-        If your code passed all the tests, you will see the following message in the terminal:
-
-            ----------- Problem 1 (30 points in total)-------------- ... ok
-            (10 points) compute_EA ... ok
-            (10 points) compute_RA ... ok
-            (10 points) elo_rating ... ok
-            ----------- Problem 2 (20 points in total)-------------- ... ok
-            (5 points) import_team_names ... ok
-            (5 points) import_W ... ok
-            (10 points) team_rating ... ok
-            ---------- Problem 3 (10 points in total) ------------ ... ok
-            (1 points) dataframe ... ok
-            (1 points) load_csv ... ok
-            (1 points) search_height ... ok
-            (1 points) save_csv ... ok
-            (1 points) sum_column ... ok
-            (2 points) aggregate ... ok
-            (2 points) join ... ok
-            (1 points) filtering ... ok
-            ---------- Problem 4 (15 points in total) ------------ ... ok
-            (2 points) load_batting ... ok
-            (2 points) search_batting ... ok
-            (3 points) aggregate_batting ... ok
-            (3 points) join_batting ... ok
-            (2 points) search_salary ... ok
-            (3 points) join_salary ... ok
-            ----------- Problem 5 (10 points in total)-------------- ... ok
-            (2 points) batting_average ... ok
-            (2 points) on_base_percentage ... ok
-            (2 points) slugging_percentage ... ok
-            (2 points) runs_created ... ok
-            (2 points) win_ratio ... ok
-            ----------- Problem 5 (15 points in total)-------------- ... ok
-            (2 points) sum_salaries ... ok
-            (2 points) sum_stat ... ok
-            (2 points) runs ... ok
-            (3 points) scout ... ok
-            (3 points) rank_BA ... ok
-            (3 points) rank_OBP ... ok
-            ----------------------------------------------------------------------
-            Ran 38 tests in 2.838s
-            
-            OK
-
-'''
-
-#--------------------------------------------
-
-
