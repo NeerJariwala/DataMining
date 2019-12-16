@@ -10,24 +10,7 @@ from game import GameState,BoardGame, Player
 '''
 #--------------------------
 def Terms_and_Conditions():
-    ''' 
-        By submitting this homework or changing this function, you agree with the following terms:
-       (1) Not sharing your code/solution with any student before and after the homework due. For example, sending your code segment to another student, putting your solution online or lending your laptop (if your laptop contains your solution or your Dropbox automatically synchronize your solution between your home computer and your laptop) to another student to work on this homework will violate this term.
-       (2) Not using anyone's code in this homework, build your own solution. For example, using some code segments from another student or online resources due to any reason (like too busy recently) will violate this term. Changing other people's code as your solution (such as changing the variable names) will also violate this term.
-       (3) When discussing with any other student about this homework, only discuss high-level ideas or using pseudo-code. Don't discuss about the solution at the code level. For example, discussing with another student about the solution of a function (which needs 5 lines of code to solve), and then working on the solution "independently", however the code of the two solutions are exactly the same, or only with minor differences  (like changing variable names) will violate this term.
-      All violations of (1),(2) or (3) will be handled in accordance with the WPI Academic Honesty Policy.  For more details, please visit: https://www.wpi.edu/about/policies/academic-integrity/dishonesty
-      Historical Data: in one year, we ended up finding 25% of the students in the class violating the terms in their homework submissions and we handled ALL of these violations according to the WPI Academic Honesty Policy. 
-    '''
-    #****************************************
-    #* CHANGE CODE HERE
-    Read_and_Agree = True  #if you have read and agree with the term above, change "False" to "True".
-    #****************************************
-    return Read_and_Agree
-
-
-
-
-
+    return True
 
 #-------------------------------------------------------
 class TicTacToe(BoardGame):
@@ -101,16 +84,10 @@ class TicTacToe(BoardGame):
                 (r=1,c=2) --- the second row, the third column 
                 (r=2,c=1) --- the third row , the second column
             So the list of valid moves is m = [(0,1),(1,2),(2,1)]
-            Hint: you could use np.where() function to find the indices of the elements in an array, where a test condition is true.
-            Hint: you could solve this problem using 2 lines of code.
         '''
         temp = np.where(s.b == 0)
         m = list(zip(temp[0], temp[1]))
         return m
-    
-    
-        ''' TEST: Now you can test the correctness of your code above by typing `nosetests -v test1.py:test_get_valid_moves' in the terminal.  '''
-
 
     # ----------------------------------------------
     def check_game(self,s):
@@ -131,7 +108,6 @@ class TicTacToe(BoardGame):
                     if e = 0, the game ended with a draw.
                     if e = 1, X player won the game.
                     if e = -1, O player won the game.
-            Hint: you could solve this problem using 11 lines of code.
         '''
         e = 5
         for i in range(np.size(s.b, axis=0)):
@@ -148,8 +124,6 @@ class TicTacToe(BoardGame):
             e = None
 
         return e
-    
-        ''' TEST: Now you can test the correctness of your code above by typing `nosetests -v test1.py:test_check_game' in the terminal.  '''
 
 
     # ----------------------------------------------
@@ -234,10 +208,7 @@ class RandomPlayer(Player):
             (r=1,c=2) --- the second row, the third column 
             (r=2,c=1) --- the third row , the second column
             The random player should randomly choose one of the valid moves. 
-            Hint: you could solve this problem using 3 lines of code.
         '''
-        #########################################
-        ## INSERT YOUR CODE HERE
 
         # find all valid moves in the current game state
         valid_moves = g.get_valid_moves(s)
@@ -246,23 +217,13 @@ class RandomPlayer(Player):
         index = np.random.randint(0, len(valid_moves))
         r = valid_moves[index][0]
         c = valid_moves[index][1]
-
-
-        #########################################
         return r,c
 
-    ''' TEST: Now you can test the correctness of your code above by typing `nosetests -v test1.py:test_choose_a_move' in the terminal.  '''
 
 
 
     #-----------------------------------------------
     ''' 
-        Great job!
-
-        ------
-        DEMO 1: If your code has passed all the above tests, now you can play TicTacToe game with the AI (RandomPlayer).  
-        ------
-        
         # INSTALL 
         In order to run the demo, you need to install pygame package:
         In the terminal, type the following:
@@ -481,13 +442,7 @@ class MMNode(Node):
                |    c=[] -- this node has not been expanded yet 
                |    v= None               
                |-----------------------
-            Hint: you could use g.get_move_state_pairs() function to compute all the next moves and next game states in the game.
-            Hint: you could solve this problem using 4 lines of code.
-            Hint: in Othello game, given a parent node p and its child node c,  p.x and c.x NOT necessarily have opposite sign.  When there is no valid move for one player, that player will give up the move, so in this case the p.x and c.x can be the same.
         '''
-        #########################################
-        ## INSERT YOUR CODE HERE
-
         # get the list of valid next move-state pairs from the current game state
         moves = g.get_move_state_pairs(self.s)
 
@@ -500,10 +455,6 @@ class MMNode(Node):
             child = MMNode(s, self, None, m, None)
             # append the child node the child list of the current node
             self.c.append(child)
-
-        #########################################
-
-    ''' TEST: Now you can test the correctness of your code above by typing `nosetests -v test1.py:test_expand' in the terminal.  '''
 
  
     # ----------------------------------------------
@@ -672,12 +623,7 @@ class MMNode(Node):
                            |    c=[] -- Terminal node (no child) 
                            |    v= None     
                            |------------------------
-
-        Hint: you could use recursion to build the tree and solve this problem using 4 lines of code.
         '''
-        #########################################
-        ## INSERT YOUR CODE HERE
-
         # if the game in the current state has not ended yet 
         if g.check_game(self.s) == None:
             #expand the current node by one-level of children nodes
@@ -686,13 +632,6 @@ class MMNode(Node):
             # to build a subtree rooted from each child node
             for i in self.c:
                 i.build_tree(g)
-
-
-        #########################################
-
-
-    ''' TEST: Now you can test the correctness of your code above by typing `nosetests -v test1.py:test_build_tree' in the terminal.  '''
-
 
 
     # ----------------------------------------------
@@ -840,11 +779,7 @@ class MMNode(Node):
                                   1,-1, 1 (v=0)  |--> Grand Child Node E2 (v=0) 
                                   0, 0, 0        |--> Grand Child Node E3 (v=1)  
                                   0, 1,-1        |--> Grand Child Node E4 (v=0) 
-        Hint: you could use recursion to compute the values of the current node recursively. 
-              you could use 12 lines of code to solve this problem.
-        '''
-        #########################################
-        ## INSERT YOUR CODE HERE
+
         # (1) if the game has already ended, the value of the node is the game result 
         if g.check_game(self.s) != None:
             self.v = g.check_game(self.s)
@@ -868,13 +803,6 @@ class MMNode(Node):
             self.v = np.amax(temp)
         if len(temp) > 0 and self.s.x == -1:
             self.v = np.amin(temp)
-
-
-
-        #########################################
-
-    ''' TEST: Now you can test the correctness of your code above by typing `nosetests -v test1.py:test_compute_v' in the terminal.  '''
-
 
 
 #-----------------------------------------------
@@ -949,8 +877,6 @@ class MiniMaxPlayer(Player):
         r = n.c[index].m[0]
         c = n.c[index].m[1]
         return r,c
-    
-        ''' TEST: Now you can test the correctness of your code above by typing `nosetests -v test1.py:test_choose_optimal_move' in the terminal.  '''
 
 
     # ----------------------------------------------
@@ -975,11 +901,7 @@ class MiniMaxPlayer(Player):
            Outputs:
                 r: the row number of the next move, an integer scalar with value 0, 1, or 2. 
                 c: the column number of the next move, an integer scalar with value 0, 1, or 2. 
-          Hint: you could solve this problem using 4 lines of code.
         '''
-        #########################################
-        ## INSERT YOUR CODE HERE
-
         # (1) build a search tree with the current game state as the root node
         s = MMNode(s)
         s.build_tree(g)
@@ -992,49 +914,14 @@ class MiniMaxPlayer(Player):
         # (3) choose the optimal next move
         r, c = self.choose_optimal_move(s)
 
-        #########################################
         return r,c
 
-    ''' TEST: Now you can test the correctness of your code above by typing `nosetests -v test1.py:test_minmax_choose_a_move' in the terminal.  '''
 
-
-
-#--------------------------------------------
-
-''' TEST Problem 1: 
-        Now you can test the correctness of all the above functions by typing `nosetests -v test1.py' in the terminal.  
-
-        If your code passed all the tests, you will see the following message in the terminal:
-            ----------- Problem 1 (50 points in total)--------------------- ... ok
-            (5 points) get_valid_moves() ... ok
-            (5 points) check_game() ... ok
-            (5 points) apply_a_move() ... ok
-            (5 points) random choose_a_move() ... ok
-            (5 points) expand ... ok
-            (5 points) build_tree ... ok
-            (5 points) compute_v() ... ok
-            (5 points) choose_optimal_move() ... ok
-            (10 points) minmax choose_a_move() ... ok
-            ----------------------------------------------------------------------
-            Ran 10 tests in 2.939s            
-            OK
-'''
-
-#--------------------------------------------
-
-
-
-
-#-----------------------------------------------
 ''' 
-    Great job!
-    DEMO 1: If your code has passed all the above tests, now you can play TicTacToe game with the AI (MiniMaxPlayer) 
+    DEMO 1: Now you can play TicTacToe game with the AI (MiniMaxPlayer) 
     by typing `python3 demo1.py minimax' in the terminal.  
 '''
-#-----------------------------------------------
-''' DEMO 2: Othello: Unfortunately, Othello is a larger game where the MiniMax method won't work. 
-    In larger games, we will need sampling-based method, such as Monte-Carlo Tree Search in Problem 2'''
-#-----------------------------------------------
+
 
 
 
