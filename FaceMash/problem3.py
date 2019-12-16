@@ -8,10 +8,6 @@ import pandas as pd
     Pandas is the library for tabular data analysis in Python. 
     It provides fast, flexible, and expressive data structures designed to make working with tabular and multidimensional data both easy and intuitive. 
     To install numpy using pip, you could type `pip3 install pandas` in the terminal.
-
-    Reference: you could read the tutorials for Pandas: 
-                    https://www.learndatasci.com/tutorials/python-pandas-tutorial-complete-introduction-for-beginners/
-                    https://pandas.pydata.org/pandas-docs/stable/getting_started/10min.html
 '''
 
 
@@ -32,8 +28,6 @@ def dataframe():
     X = pd.DataFrame({'height': [1, 2, 3], 'width': [4, 5, 6]})
     return X
 
-    ''' TEST: Now you can test the correctness of your code above by typing `nosetests -v test3.py:test_dataframe' in the terminal.  '''
-
 
 #--------------------------
 def load_csv(filename="A.csv"):
@@ -44,13 +38,9 @@ def load_csv(filename="A.csv"):
                 filename: a string indicating the filename of the CSV file.
         Output: 
                 X: a pandas dataframe loaded from the CSV file 
-        Hint: you could solve this problem using one line of code with a function in pandas package.
     '''
     X = pd.read_csv(filename)
     return X
-
-    ''' TEST: Now you can test the correctness of your code above by typing `nosetests -v test3.py:test_load_csv' in the terminal.  '''
-
 
 
 #--------------------------
@@ -62,13 +52,9 @@ def search_height(X, t=2):
                 t: an integer scalar, the threshold of the height. 
         Output: 
                 Y: the result dataframe, containing only the records with height greater or equals to the threshold
-        Hint: you could solve this problem using one line of code using pandas package.
     '''
     Y = X.loc[X['height'] >= t]
     return Y 
-
-    ''' TEST: Now you can test the correctness of your code above by typing `nosetests -v test3.py:test_search_height' in the terminal.  '''
-
 
 
 #--------------------------
@@ -79,13 +65,9 @@ def save_csv(X, filename="A2.csv"):
         Input: 
                 X: a pandas dataframe to be saved into the CSV file 
                 filename: a string indicating the filename of the CSV file.
-        Hint: You could solve this problem using one line of code with a function in pandas package.
-              You could set the index parameter to avoid adding an index column in the CSV file.
     '''
     X.to_csv(filename, index=False)
     return 
-
-    ''' TEST: Now you can test the correctness of your code above by typing `nosetests -v test3.py:test_save_csv' in the terminal.  '''
 
 
 
@@ -108,13 +90,9 @@ def sum_column(X, key='count'):
                 key: a string indicating the column to be used for summing the values. 
         Output: 
                 S: an integer scalar, the sum of the values in the column 
-        Hint: you could solve this problem using one line of code using pandas package.
     '''
     S = X[key].sum()
     return S 
-
-    ''' TEST: Now you can test the correctness of your code above by typing `nosetests -v test3.py:test_sum_column' in the terminal.  '''
-
 
 #--------------------------
 def aggregate(X, key = 'ID'):
@@ -139,15 +117,10 @@ def aggregate(X, key = 'ID'):
                 key: a string indicating the column to be used for grouping the rows. 
         Output: 
                 Y: the aggregated dataframe, containing no duplicated ID's. 
-        Hint: you could use the groupby() function of pandas and solve this problem using two line of code.
-              To convert an index into a column, you could use reset_index() method in pandas.
     '''
     Y = X.groupby(key).agg('sum')
     Y = Y.reset_index()
     return Y
-
-    ''' TEST: Now you can test the correctness of your code above by typing `nosetests -v test3.py:test_aggregate' in the terminal.  '''
-
 
 
 #--------------------------
@@ -177,12 +150,9 @@ def join(X,Y, key = 'ID'):
                 key: a string indicating the column to be used for joining the tables
         Output: 
                 Z: the result dataframe, containing the join of the two tables. 
-        Hint: you could use the merge() function of pandas and solve this problem using one lines of code.
     '''
     Z = pd.merge(X, Y, on=key)
     return Z
-
-    ''' TEST: Now you can test the correctness of your code above by typing `nosetests -v test3.py:test_join' in the terminal.  '''
 
 
 
@@ -208,39 +178,6 @@ def filtering(X, key = 'ID', values=[1,3]):
                 values: a list of values to keep in the table 
         Output: 
                 Y: the result dataframe, containing the filtered table. 
-        Hint: you could use the isin() function of pandas and solve this problem using one line of code.
     '''
     Y = X[X[key].isin(values)]
     return Y
-
-    ''' TEST: Now you can test the correctness of your code above by typing `nosetests -v test3.py:test_filtering' in the terminal.  '''
-
-
-
-
-
-#--------------------------------------------
-
-''' TEST ALL functions in Problem 3: 
-        Now you can test the correctness of all the above functions by typing `nosetests -v test3.py' in the terminal.  
-
-        If your code passed all the tests, you will see the following message in the terminal:
-            ---------- Problem 3 (10 points in total) ------------ ... ok
-            (1 points) dataframe ... ok
-            (1 points) load_csv ... ok
-            (1 points) search_height ... ok
-            (1 points) save_csv ... ok
-            (1 points) sum_column ... ok
-            (2 points) aggregate ... ok
-            (2 points) join ... ok
-            (1 points) filtering ... ok
-            ----------------------------------------------------------------------
-            Ran 6 tests in 0.758s
-            
-            OK
-
-'''
-
-#--------------------------------------------
-
-
