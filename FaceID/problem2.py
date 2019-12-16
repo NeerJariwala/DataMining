@@ -40,10 +40,6 @@ def centering_X(X):
     Xc = X - mu
     return Xc, mu
 
-    ''' TEST: Now you can test the correctness of your code above by typing `nosetests -v test2.py:test_centering_X' in the terminal.  '''
-
-
-
 
 
 #--------------------------
@@ -58,9 +54,6 @@ def compute_C(Xc):
     '''
     C = np.dot(Xc.T, Xc) / (np.size(Xc, 0) - 1)
     return C
-
-    ''' TEST: Now you can test the correctness of your code above by typing `nosetests -v test2.py:test_compute_C' in the terminal.  '''
-
 
 
 
@@ -77,7 +70,6 @@ def compute_P(C,k):
                 For example, if we sort the eigen pairs of matrix C in descending order, and 
                 the result [(v1,e1),(v2,e2),...., (vp, ep)], here v1 >= v2 >= v3 ...
                 The projection matrix should be [e1^T, e2^T, ..., ek^T], here e^T represents the transpose of a row vector e (which is a column vector)
-        Hint: you can re-use the functions in problem 1 to solve this problem.
     '''
     Ep = p1.compute_eigen_pairs(C)
     Ep = p1.sort_eigen_pairs(Ep, 'descending')
@@ -87,8 +79,6 @@ def compute_P(C,k):
         for i in range(height):
             P[i, j] = Ep[j][1][i]
     return P
-
-    ''' TEST: Now you can test the correctness of your code above by typing `nosetests -v test2.py:test_compute_P' in the terminal.  '''
 
 
 
@@ -105,9 +95,6 @@ def compute_Xp(Xc,P):
     Xp = np.dot(Xc, P)
     return Xp
 
-    ''' TEST: Now you can test the correctness of your code above by typing `nosetests -v test2.py:test_compute_Xp' in the terminal.  '''
-
-
 
 
 #--------------------------
@@ -123,9 +110,6 @@ def PCA(X, k=1):
         Note: in this problem, you should not use existing packages for PCA, such as scikit-learn
     '''
 
-    #########################################
-    ## INSERT YOUR CODE HERE
-
     # centering matrix X
     Xc, mu = centering_X(X)
 
@@ -139,33 +123,5 @@ def PCA(X, k=1):
     # project the data into lower dimension using projection matrix P and centered data matrix X
     Xp = compute_Xp(Xc, P)
 
-    #########################################
+
     return Xp, P 
-
-    ''' TEST: Now you can test the correctness of your code above by typing `nosetests -v test2.py:test_PCA' in the terminal.  '''
-
-
-
-#--------------------------------------------
-
-''' TEST Problem 2: 
-        Now you can test the correctness of all the above functions by typing `nosetests -v test2.py' in the terminal.  
-
-        If your code passed all the tests, you will see the following message in the terminal:
-            ----------- Problem 2 (25 points in total)--------------------- ... ok
-            (3 points) centering_X ... ok
-            (2 points) compute_C ... ok
-            (5 points) compute_P ... ok
-            (5 points) compute_Xp ... ok
-            (10 points) PCA ... ok
-            ----------------------------------------------------------------------
-            Ran 6 tests in 0.019s          
-            OK
-'''
-
-#--------------------------------------------
-
-
-
-
-
