@@ -8,8 +8,6 @@ import numpy as np
     Numpy is the library for scientific computing in Python. 
     It provides a high-performance multidimensional array object, and tools for working with these arrays. 
     To install numpy using pip, you could type `pip3 install numpy` in the terminal.
-
-    Reference: you could read the tutorial for Numpy in Canvas: Tab "Files" -> "doc" folder ->  File name: numpy-intro.pdf 
 '''
 
 
@@ -21,12 +19,9 @@ def ndarray():
             4,5,6 
         Output: 
                 X: a numpy matrix of shape 2 X 3, the matrix, each element is an integer
-        Note: the data type of the numpy array should be integer
     '''
     X = np.array([[1, 2, 3], [4, 5, 6]])
     return X
-
-    ''' TEST: Now you can test the correctness of your code above by typing `nosetests -v test2.py:test_ndarray' in the terminal.  '''
 
 
 
@@ -42,8 +37,6 @@ def float_array():
     X = np.array([[0.1, 0.2, 0.3], [0.4, 0.5, 0.6]], np.float64)
     return X
 
-    ''' TEST: Now you can test the correctness of your code above by typing `nosetests -v test2.py:test_float_array' in the terminal.  '''
-
 
 
 #--------------------------
@@ -55,13 +48,10 @@ def get_shape(X):
         Output: 
                 h: an integer, the hight of the matrix x (number of rows)
                 w: an integer, the width of the matrix x (number of columns)
-        Hint: you could solve this problem using one line of code, using a numpy function. 
     '''
     h = np.shape(X)[0]
     w = np.shape(X)[1]
     return h, w 
-
-    ''' TEST: Now you can test the correctness of your code above by typing `nosetests -v test2.py:test_get_shape' in the terminal.  '''
 
 
 #--------------------------
@@ -73,12 +63,10 @@ def all_one_matrix(m,n):
                 n: an integer scalar, the number of columns in the matrix
         Output: 
                 X: a numpy matrix of shape m X n, the matrix, each element is a float number of value 1.0
-        Hint: you could solve this problem using one line of code, using a numpy function. 
     '''
     X = np.ones((m,n))
     return X 
 
-    ''' TEST: Now you can test the correctness of your code above by typing `nosetests -v test2.py:test_all_one_matrix' in the terminal.  '''
 
 
 #--------------------------
@@ -89,12 +77,9 @@ def mat_sum(X):
                 X: a numpy matrix of shape m X n 
         Output: 
                 s: a numpy vector of shape (n,) the i-th element of s is the sum of the i-th column of matrix X 
-        Hint: you could solve this problem using one line of code, using a numpy function. 
     '''
     s = np.add.reduce(X)
     return s
-
-    ''' TEST: Now you can test the correctness of your code above by typing `nosetests -v test2.py:test_mat_sum' in the terminal.  '''
 
 
 
@@ -116,13 +101,9 @@ def mat_scalar_multiplication(X, c):
                 c: a float scalar 
         Output: 
                 Y: a numpy matrix of shape (m,n),  each element Y[i,j] = c*X[i,j] 
-        Hint: you could solve this problem using one line of code, using a numpy function. 
     '''
     Y = X*c
     return Y
-
-    ''' TEST: Now you can test the correctness of your code above by typing `nosetests -v test2.py:test_mat_scalar_multiplication' in the terminal.  '''
-
 
 
 #--------------------------
@@ -145,12 +126,9 @@ def matrix_vector_multiplication(X, y):
                 y: a numpy vector of shape n x 1, 
         Output: 
                 z: the numpy vector of shape m x 1, the result of the matrix vector product. 
-        Hint: you could solve this problem with one line of code using NumPy
     '''
     z = X.dot(y)
     return z
-
-    ''' TEST: Now you can test the correctness of your code above by typing `nosetests -v test2.py:test_matrix_vector_multiplication' in the terminal.  '''
 
 
 
@@ -167,14 +145,9 @@ def find_zeros(x):
                 x: a numpy vector of length n 
         Output: 
                 d: a numpy vector of length m (m is the number zeros in vector x), the i-th element of d is the index of the i-th zero in x. 
-        Hint: you could solve this problem using one line of code, using a numpy function. 
     '''
     d = np.where(x == 0)[0]
     return d
-
-    ''' TEST: Now you can test the correctness of your code above by typing `nosetests -v test2.py:test_find_zeros' in the terminal.  '''
-
-
 
 
 
@@ -194,41 +167,6 @@ def diag_mat(x):
                 x: a numpy vector of length n 
         Output: 
                 D: a numpy of shape n x n 
-        Hint: you could solve this problem using one line of code, using a numpy function. 
     '''
     D = np.diag(x)
     return D
-
-    ''' TEST: Now you can test the correctness of your code above by typing `nosetests -v test2.py:test_diag_mat' in the terminal.  '''
-
-
-
-
-
-#--------------------------------------------
-
-''' TEST ALL: 
-        Now you can test the correctness of all the above functions by typing `nosetests -v test2.py' in the terminal.  
-
-        If your code passed all the tests, you will see the following message in the terminal:
-
-            ---------- Problem 2 (10 points in total) ------------ ... ok
-            (1 points) nd-array ... ok
-            (1 points) float array ... ok
-            (1 points) get_shape ... ok
-            (1 points) all_one_matrix ... ok
-            (1 points) mat sum ... ok
-            (1 points) mat_scalar_multiplication ... ok
-            (2 points) matrix_vector_multiplication ... ok
-            (1 points) find_zeros ... ok
-            (1 points) diag_mat ... ok
-            
-            ----------------------------------------------------------------------
-            Ran 10 tests in 0.004s
-            
-            OK
-'''
-
-#--------------------------------------------
-
-
