@@ -20,11 +20,6 @@ def batting_average(H, AB):
     return BA
 
 
-    ''' TEST: Now you can test the correctness of your code above by typing `nosetests -v test5.py:test_batting_average' in the terminal.  '''
-
-
-
-
 #--------------------------
 def on_base_percentage(H, AB, BB, HBP, SF):
     '''
@@ -40,9 +35,6 @@ def on_base_percentage(H, AB, BB, HBP, SF):
     '''
     OBP = (H + BB + HBP)/(AB + BB + HBP + SF)
     return OBP 
-
-    ''' TEST: Now you can test the correctness of your code above by typing `nosetests -v test5.py:test_on_base_percentage' in the terminal.  '''
-
 
 
 #--------------------------
@@ -62,10 +54,6 @@ def slugging_percentage(H, _2B, _3B, HR, AB):
 
     return SLG 
 
-    ''' TEST: Now you can test the correctness of your code above by typing `nosetests -v test5.py:test_slugging_percentage' in the terminal.  '''
-
-
-
 
 #--------------------------
 def runs_created(H, _2B, _3B, HR, BB, AB):
@@ -84,9 +72,6 @@ def runs_created(H, _2B, _3B, HR, BB, AB):
     RC = ((H + BB) * (H + _2B + 2 * _3B + 3 * HR)) / (AB + BB)
     return RC 
 
-    ''' TEST: Now you can test the correctness of your code above by typing `nosetests -v test5.py:test_runs_created' in the terminal.  '''
-
-
 
 
 #--------------------------
@@ -101,32 +86,3 @@ def win_ratio(RC, RA):
     '''
     WR = (RC**2)/(RC**2 + RA**2)
     return WR 
-
-
-    ''' TEST: Now you can test the correctness of your code above by typing `nosetests -v test5.py:test_win_ratio' in the terminal.  '''
-
-
-
-
-#--------------------------------------------
-
-''' TEST ALL functions in Problem 5: 
-        Now you can test the correctness of all the above functions by typing `nosetests -v test5.py' in the terminal.  
-
-        If your code passed all the tests, you will see the following message in the terminal:
-            ----------- Problem 5 (10 points in total)-------------- ... ok
-            (2 points) batting_average ... ok
-            (2 points) on_base_percentage ... ok
-            (2 points) slugging_percentage ... ok
-            (2 points) runs_created ... ok
-            (2 points) win_ratio ... ok
-            ----------------------------------------------------------------------
-            Ran 6 tests in 0.758s
-            
-            OK
-
-'''
-
-#--------------------------------------------
-
-
