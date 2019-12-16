@@ -72,16 +72,11 @@ class MCNode(Node):
         # Game Result 2: If the "O" player chooses the move (0,0), then the game ends, "O" player wins (e=-1)
         If we run this sample() function multiple times, the function should have equal chance to 
         return Result 1 and Result 2.
-     
-        Hint: you could use RandomPlayer in problem 1 and run_a_game() function in game.py.
-        Hint: you could start a game simulation with any game state using run_a_game(s=s), by specifying the initial state of the game.
-        Hint: you could solve this problem using 2 lines of code.
+
         '''
         s = self.s
         e = g.run_a_game(RandomPlayer(), RandomPlayer(), s=s)
         return e
-    
-    ''' TEST: Now you can test the correctness of your code above by typing `nosetests -v test2.py:test_sample' in the terminal.  '''
 
 
     # ----------------------------------------------
@@ -169,14 +164,8 @@ class MCNode(Node):
                |-----------------------
         After the expansion, you need to return one of the children nodes as the output.
         For example, you could return Child Node A, or Child Node B, or Child Node C.
-    
-        Hint: This function is very similar to the expand() in problem 1. 
-        Hint: you could use g.get_move_state_pairs() function to compute all the next moves and next game states in the game.
-        Hint: You could solve this problem using 4 lines of code.
-        '''
-        #########################################
-        ## INSERT YOUR CODE HERE
 
+        '''
         # get the list of valid next move-state pairs from the current game state
         moves = g.get_move_state_pairs(self.s)
         # expand the node with one level of children nodes 
@@ -187,10 +176,7 @@ class MCNode(Node):
             c = MCNode(s, self, None, m)
             # append the child node the child list of the current node 
             self.c.append(c)
-        #########################################
         return c
-    
-    ''' TEST: Now you can test the correctness of your code above by typing `nosetests -v test2.py:test_expand' in the terminal.  '''
 
 
     # ----------------------------------------------
@@ -278,17 +264,13 @@ class MCNode(Node):
         (1) Grand Child D3: v =(4 -> 5),    N =(5 -> 6)
         (2) Child Node D:   v =(13 -> 14),  N =(21 -> 22)
         (3) Root Node:      v =(19 -> 20),  N =(54 -> 55)
-    
-        Hint: you could use recursion to solve this problem using 4 lines of code.
         '''
         if self.p != None:
             self.p.backprop(e)
         self.N = self.N + 1
         self.v = self.v + e
-    
-    ''' TEST: Now you can test the correctness of your code above by typing `nosetests -v test2.py:test_backprop' in the terminal.  '''
 
-
+        
     #----------------------------------------------
     @staticmethod
     def compute_UCB(vi, ni, N, x ,c=1.142):
@@ -309,15 +291,12 @@ class MCNode(Node):
                 c: the parameter to trade-off between exploration and exploitation, a float scalar
             Outputs:
                 b: the UCB score of the child node, a float scalar. 
-        Hint: you could solve this problem using 4 lines of code.
         '''
         if ni == 0:
             b = np.inf
         else:
             b = (x*vi/ni) + c * np.sqrt(np.log(N)/ni)
         return b
-    
-    ''' TEST: Now you can test the correctness of your code above by typing `nosetests -v test2.py:test_compute_UCB' in the terminal.  '''
 
 
     #----------------------------------------------
@@ -343,7 +322,7 @@ class MCNode(Node):
         So the Child Node A will have a higher UCB score, and this function will select Child Node A to return.
         
         When there is a tie in the UCB score, use the index of the child node as the tie-breaker.
-        Hint: you could solve this problem using 6 lines of code.
+
         '''
         val = -np.inf
         c = self
@@ -352,11 +331,7 @@ class MCNode(Node):
                 c = i
                 val = i.compute_UCB(i.v, i.N, self.N, self.s.x)
         return c
-    
-    
-    ''' TEST: Now you can test the correctness of your code above by typing `nosetests -v test2.py:test_select_a_child' in the terminal.  '''
-
-
+  
  
 
     #----------------------------------------------
@@ -403,10 +378,8 @@ class MCNode(Node):
             among all the children nodes of "Child Node D".
             Then we travel down to the "Grand Child D3" and find that this node is a leaf node (no child).
             So we return "Grand Child D3" as the selected node to return.
-            Hint: you could use recursion to solve this problem using 4 lines of code.
         '''
-        #########################################
-        ## INSERT YOUR CODE HERE
+
         # if the root node is a leaf node (no child), return root node
         if len(self.c) == 0:
             l = self
@@ -417,11 +390,8 @@ class MCNode(Node):
             child = self.select_a_child()
         #            recursively select the children nodes of node (c).
             l = child.selection()
-        #########################################
+
         return l
-
-
-    ''' TEST: Now you can test the correctness of your code above by typing `nosetests -v test2.py:test_selection' in the terminal.  '''
 
 
 
@@ -627,14 +597,12 @@ class MCNode(Node):
                               1,-1, 1 (v=1)  |--> Child E2 (v= 0,N=1) -->| ...
                               0, 0, 0 (N=5)  |--> Child E3 (v= 1,N=1) -->| ... 
                               0, 1,-1        |--> Child E4 (v= 0,N=1) -->| ...
-    
-        Hint: you could use the functions implemented above to solve this problem using 5 lines of code.
+
         '''
         # iterate n_iter times
         for _ in range(n_iter):
             _
-            #########################################
-            ## INSERT YOUR CODE HERE
+
             # Step 1: selection: starting from root node, select one leaf node (L)
             node = self.selection()
             # Step 2: expansion: if in the leaf node L, the game has not ended yet, 
@@ -649,9 +617,7 @@ class MCNode(Node):
             e = node.sample(g)
             # Step 4: back propagation: backprop the result of the game result 
             node.backprop(e)
-            #########################################
-    
-        ''' TEST: Now you can test the correctness of your code above by typing `nosetests -v test2.py:test_build_tree' in the terminal.  '''
+
 
 #-----------------------------------------------
 ''' 
@@ -660,8 +626,6 @@ class MCNode(Node):
     (1) Build Tree: we will first build a Monte-Carlo Search Tree, where the root of the tree is the current game state.
     (2) Choose Optimal Next Move: the agent will choose the child node with the largest number (N) as the next move.
 '''
-
-
 
 
 #-------------------------------------------------------
@@ -714,7 +678,6 @@ class MCTSPlayer(Player):
     
             The optimal next move will be child node with the largest N (Child Node D) in the first level of the tree. 
             So in this example, the next move should be (r=2, c=0)
-            Hint: you could solve this problem using 5 lines of code.
         '''
         temp = []
         for i in n.c:
@@ -723,8 +686,6 @@ class MCTSPlayer(Player):
         r = n.c[index].m[0]
         c = n.c[index].m[1]
         return r,c
-
-    ''' TEST: Now you can test the correctness of your code above by typing `nosetests -v test2.py:test_choose_optimal_move' in the terminal.  '''
 
     # ----------------------------------------------
     def choose_a_move(self,g, s):
@@ -744,47 +705,16 @@ class MCTSPlayer(Player):
            Outputs:
                 r: the row number, an integer scalar with value 0, 1, or 2. 
                 c: the column number, an integer scalar with value 0, 1, or 2. 
-        Hint: you could solve this problem using 3 lines of code.
+
         '''
-        #########################################
-        ## INSERT YOUR CODE HERE
+
         # create a tree node (n) with the current game state 
         n = MCNode(s)
         # build a search tree with the tree node (n) as the root and n_iter as the number of simulations
         n.build_tree(g)
         # choose the best next move: the children node of the root node with the largest N
         r, c = self.choose_optimal_move(n)
-        #########################################
         return r,c
-
-    ''' TEST: Now you can test the correctness of your code above by typing `nosetests -v test2.py:test_MCTS_choose_a_move' in the terminal.  '''
-
-
-
-#--------------------------------------------
-
-''' TEST Problem 2: 
-        Now you can test the correctness of all the above functions by typing `nosetests -v test2.py' in the terminal.  
-
-        If your code passed all the tests, you will see the following message in the terminal:
-            ----------- Problem 2 (50 points in total)--------------------- ... ok
-            (5 points) sample ... ok
-            (5 points) expand ... ok
-            (5 points) backprop ... ok
-            (5 points) compute_UCB ... ok
-            (5 points) select_a_child ... ok
-            (5 points) selection ... ok
-            (5 points) build_tree ... ok
-            (5 points) choose_optimal_move() ... ok
-            (10 points) MCTS choose_a_move ... ok
-            ----------------------------------------------------------------------
-            Ran 10 tests in 18.117s     
-            OK
-'''
-
-
-
-
 
 
 
@@ -792,7 +722,7 @@ class MCTSPlayer(Player):
 #-----------------------------------------------
 ''' 
     Great job!
-    DEMO 1: If your code has passed all the above tests, now you can play TicTacToe game with the AI (Monte-Carlo Tree Search) 
+    DEMO 1: Now you can play TicTacToe game with the AI (Monte-Carlo Tree Search) 
     by typing `python3 demo1.py mcts' in the terminal.  
 '''
 #-----------------------------------------------
@@ -801,47 +731,4 @@ class MCTSPlayer(Player):
     by typing `python3 demo2.py mcts' in the terminal.  
 '''
 #-----------------------------------------------
-
-
-
-
-
-
-
-#--------------------------------------------
-
-''' FINAL TEST of your submission: 
-        Now you can test the correctness of all the problems in this homework by typing `nosetests -v' in the terminal.  
-
-        If your code passed all the tests, you will see the following message in the terminal:
-            ----------- Problem 1 (50 points in total)--------------------- ... ok
-            (5 points) get_valid_moves() ... ok
-            (5 points) check_game() ... ok
-            (5 points) apply_a_move() ... ok
-            (5 points) random choose_a_move() ... ok
-            (5 points) expand ... ok
-            (5 points) build_tree ... ok
-            (5 points) compute_v() ... ok
-            (5 points) choose_optimal_move() ... ok
-            (10 points) minmax choose_a_move() ... ok
-
-            ----------- Problem 2 (50 points in total)--------------------- ... ok
-            (5 points) sample ... ok
-            (5 points) expand ... ok
-            (5 points) backprop ... ok
-            (5 points) compute_UCB ... ok
-            (5 points) select_a_child ... ok
-            (5 points) selection ... ok
-            (5 points) build_tree ... ok
-            (5 points) choose_optimal_move() ... ok
-            (10 points) MCTS choose_a_move ... ok
-
-            ----------------------------------------------------------------------
-            Ran 21 tests in 22.203s
-
-            OK
-'''
-#--------------------------------------------
-
-
 
